@@ -1,0 +1,51 @@
+[build-system]
+requires = ["setuptools>=68", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "sonde-tracker"
+version = "1.0.0"
+description = "Monitoriza radiosondas de sondehub.org con alertas Telegram"
+readme = "README.md"
+license = {text = "MIT"}
+requires-python = ">=3.10"
+dependencies = [
+    "websockets>=12.0",
+    "pyyaml>=6.0",
+    "python-dotenv>=1.0",
+    "requests>=2.31",
+    "geopy>=2.4",
+    "python-telegram-bot>=20.0",
+    "rich>=13.0",
+    "tenacity>=8.2",
+]
+
+[project.optional-dependencies]
+dev = [
+    "pytest>=7.4",
+    "pytest-asyncio>=0.21",
+    "pytest-mock>=3.11",
+    "ruff>=0.1",
+    "black>=23.0",
+    "mypy>=1.5",
+]
+
+[project.scripts]
+sonde-tracker = "src.main:main"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+line-length = 100
+target-version = "py310"
+
+[tool.black]
+line-length = 100
+target-version = ["py310"]
+
+[tool.mypy]
+python_version = "3.10"
+warn_return_any = true
+warn_unused_configs = true

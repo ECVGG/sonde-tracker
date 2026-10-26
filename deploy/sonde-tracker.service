@@ -1,0 +1,26 @@
+[Unit]
+Description=Sonde Tracker - Alertas radiosondas Telegram
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=sonde-tracker
+Group=sonde-tracker
+WorkingDirectory=/opt/sonde-tracker
+Environment=PATH=/opt/sonde-tracker/.venv/bin
+ExecStart=/opt/sonde-tracker/.venv/bin/python -m src.main
+Restart=always
+RestartSec=10
+StandardOutput=journal
+StandardError=journal
+
+# Seguridad
+NoNewPrivileges=yes
+PrivateTmp=yes
+ProtectSystem=strict
+ProtectHome=yes
+ReadWritePaths=/opt/sonde-tracker/config /opt/sonde-tracker/logs
+
+[Install]
+WantedBy=multi-user.target

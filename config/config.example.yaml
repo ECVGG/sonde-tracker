@@ -1,0 +1,64 @@
+# Configuración de Sonde Tracker
+# Copia este archivo a config.yaml y edita los valores
+# NO subas config.yaml a git (contiene secrets)
+
+# Tu ubicación de referencia (donde estás tú / tu estación)
+# Consigue tus coordenadas en: https://www.latlong.net/
+location:
+  latitude: 40.4168      # Ejemplo: Madrid
+  longitude: -3.7038
+  altitude_m: 650        # Altitud sobre el nivel del mar (metros)
+
+# Radio de alerta en kilómetros
+# Se notificará si la sonda va a aterrizar dentro de este radio
+alert_radius_km: 30
+
+# Configuración de Telegram Bot
+# Crea un bot con @BotFather y obtén el token
+# El chat_id puede ser tu ID de usuario o el de un grupo/canal
+telegram:
+  bot_token: "${TELEGRAM_BOT_TOKEN}"  # Se sustituye por variable de entorno
+  chat_id: "${TELEGRAM_CHAT_ID}"
+
+# Conexión a sondehub.org
+sondehub:
+  ws_url: "wss://sondehub.org/ws"
+  reconnect_delay_sec: 10
+  max_reconnect_delay_sec: 300
+  ping_interval_sec: 30
+
+# Filtros opcionales (comenta para desactivar)
+filters:
+  # Filtrar por rango de frecuencias MHz (ej. 400-406 para sondas meteorológicas)
+  # frequency_mhz_min: 400
+  # frequency_mhz_max: 406
+
+  # Filtrar por tipo de sonda (ej. "RS41", "RS92", "DFM", "M10", "M20")
+  # sonde_type: ""
+
+  # Solo alertar si la sonda está por encima de esta altitud (metros)
+  # min_altitude_m: 1000
+
+# Configuración de alertas
+alerts:
+  # Enviar notificación cuando empiece el descenso
+  notify_on_descent_start: true
+
+  # Enviar notificación cuando aterrice (estimado)
+  notify_on_landing: true
+
+  # Solo UNA alerta por sonda (true = descent_start OR landing, false = ambas)
+  alert_once_per_sonde: true
+
+  # Intervalo mínimo entre alertas de la misma sonda (segundos)
+  # Solo aplica si alert_once_per_sonde: false
+  min_alert_interval_sec: 300
+
+  # Incluir mapa en la notificación (enlace a sondehub.org)
+  include_map_link: true
+
+# Logging
+logging:
+  level: "INFO"  # DEBUG, INFO, WARNING, ERROR
+  format: "json"  # json o text
+  file: ""  # Vacío = solo stdout, o ruta a archivo
