@@ -4,12 +4,12 @@ Monitoriza radiosondas de [sondehub.org](https://sondehub.org) y envía notifica
 
 ## Características
 
-- 📡 Conexión WebSocket a sondehub.org para datos en tiempo real
-- 🎯 Filtrado por distancia (radio configurable, por defecto 30 km)
-- 📉 Detección automática de fase de descenso
-- 📱 Notificaciones por Telegram Bot
-- ⚙️ Configuración mediante archivo YAML + variables de entorno
-- 🐳 Listo para Docker / systemd
+-  Conexión WebSocket a sondehub.org para datos en tiempo real
+-  Filtrado por distancia (radio configurable, por defecto 30 km)
+-  Detección automática de fase de descenso
+-  Notificaciones por Telegram Bot
+-  Configuración mediante archivo YAML + variables de entorno
+-  Listo para Docker / systemd
 
 ## Instalación rápida
 
